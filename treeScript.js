@@ -2,18 +2,25 @@
 
 console.log("create L-system");
 
-var ab = new Alphabet(["A","B"]);
-var ax = new Axiom("A");
+var AB = new Alphabet(["A","B"]);
+var AX = new Axiom("A");
 
 
-// var rules = function(lstring) {
-// 	var newLString = "";
-// 	forEvery 
-// }
+var LRulesDef = function(Lstring) {
+	var newLString = "";
+	for (var i = 0; i < Lstring.length; i++) {
+		if (Lstring[i] == "A") {
+			newLString = newLString + "AB";
+		}
+		if (Lstring[i] == "B") {
+			newLString = newLString + "A";
+		}
+	}
 
-// var A = [1,2,3];
+	return newLString;
+}
 
-// for (var i = 0; i < A.length; i++) {
-// 	console.log(A[i]);
-// }
+var LRules = new Rules(LRulesDef);
+
+console.log(LRules.showRules());
 
