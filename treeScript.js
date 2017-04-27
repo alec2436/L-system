@@ -1,10 +1,8 @@
 'use strict';
 
-var AB = new Alphabet(["A","B"]);
-var AX = new Axiom("A");
-
-
-var LRulesDef = function(Lstring) {
+var algae_alphabet = new Alphabet(["A","B"]);
+var algae_axiom = new Axiom("A");
+var algae_rules_defined = function(Lstring) {
 	var newLString = "";
 	for (var i = 0; i < Lstring.length; i++) {
 		if (Lstring[i] == "A") {
@@ -17,13 +15,41 @@ var LRulesDef = function(Lstring) {
 
 	return newLString;
 }
+var algae_rules = new Rules(algae_rules_defined);
+var algae_tree = new Tree(algae_alphabet, algae_axiom, algae_rules);
 
-var LRules = new Rules(LRulesDef);
 
-var LTree = new Tree(AB, AX, LRules);
+var cantor_alphabet = new Alphabet(["A","B"]);
+var cantor_axiom = new Axiom("A");
+var cantor_rules_defined = function(Lstring) {
+	var newLString = "";
 
-// console.log(LTree.axiom);
-// console.log(LTree.buildTree(4));
+	for (var i = 0; i < Lstring.length; i++) {
+		if (Lstring[i] == "A")
+			newLString = newLString + "ABA";
+		if (Lstring[i] == "B")
+			newLString = newLString + "BBB";
+	}
 
-for (var i = 0; i < 5; i++)
-	console.log(LTree.buildTree(i));
+	return newLString;
+}
+var cantor_rules = new Rules(cantor_rules_defined);
+var cantor_tree = new Tree(cantor_alphabet, cantor_axiom, cantor_rules);
+
+
+var koch_alphabet = new Alphabet("F", "+", "-");
+var koch_axiom = new Axiom("F");
+var koch_rules_defined = function(Lstring) {
+	var newLString = "";
+
+	for (var i = 0; i < Lstring.length; i++) {
+		if (Lstring[i] == "F")
+			newLString = newLString + "F+F-F-F+F";
+	}
+
+	return newLString;
+}
+var koch_rules = new Rules(koch_rules_defined);
+var koch_tree = new Tree(koch_alphabet, koch_axiom, koch_rules);
+
+console.log(koch_tree.buildTree(2));
