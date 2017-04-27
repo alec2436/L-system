@@ -1,7 +1,5 @@
 'use strict';
 
-console.log("create L-system");
-
 var AB = new Alphabet(["A","B"]);
 var AX = new Axiom("A");
 
@@ -22,5 +20,10 @@ var LRulesDef = function(Lstring) {
 
 var LRules = new Rules(LRulesDef);
 
-console.log(LRules.showRules());
+var LTree = new Tree(AB, AX, LRules);
 
+// console.log(LTree.axiom);
+// console.log(LTree.buildTree(4));
+
+for (var i = 0; i < 5; i++)
+	console.log(LTree.buildTree(i));

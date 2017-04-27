@@ -3,8 +3,6 @@
 class Rules {
 	constructor(R) {
 		this.R = R;
-
-		console.log("created constructor");
 	}
 
 	get rules() {

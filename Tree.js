@@ -7,9 +7,24 @@ class Tree {
 		this.P = P; // production rules
 	}
 
-	stringLSystem() {
-		return "Alphabet == " + this.V + "\n"
-			+ "Axiom == " + this.w + "\n"
-			+ "Rules == " + this.P;
+	get axiom() {
+		return this.w.axiom;
 	}
+
+	toString() {
+		return "Alphabet == " + this.V.alphabet + "\n"
+			+ "Axiom == " + this.w.axiom + "\n"
+			+ "Rules == " + this.P.showRules();
+	
+	}
+
+	buildTree(N) {
+		return this.buildTreeRecusion(N, this.w.axiom);
+	}
+
+	buildTreeRecusion(N, treeString) { // N is the number of iterations
+		if (N == 0)
+			return treeString;
+		return this.buildTreeRecusion(N-1,this.P.iterateString(treeString));
+	}	
 }
